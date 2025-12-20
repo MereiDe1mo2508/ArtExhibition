@@ -2,7 +2,7 @@ public class Main {
     public static void main(String[] args) {
     //--Create objects (instances of classes)--
         System.out.println("\n===ART EXHIBITION===");
-        Artwork artwork1 = new Artwork ("Mona Lisa", "Leonardo Da Vinci", 1979,false, 800000000) ;
+        Artwork artwork1 = new Artwork ("Mona Lisa", "Leonardo Da Vinci", 1980,false, 800000000) ;
         Artwork artwork2 = new Artwork ("Starry Night", "Vincent Van Gogh", 1889, false, 1000000000);
         Artist artist1 = new Artist ("Leonardo Da Vinci", 67);
         Artist artist2 = new Artist ("Vincent Van Gogh", 37);
