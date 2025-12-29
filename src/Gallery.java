@@ -1,11 +1,12 @@
-public class Gallery {
+//--Making a class abstract to use polymorphism in inhered class
+abstract class Gallery {
     //--Attributes
     private String name;
     private String location;
-    //--Constructors
+    //--Constructors(encapsulation)
     public Gallery(String name, String location) {
-        this.name = name;
-        this.location = location;
+        setName(name);
+        setLocation(location);
     }
     //--Getters and setters--
     //getting gallery's name
@@ -19,12 +20,16 @@ public class Gallery {
     public String getLocation() {
         return location;
     }
-    public void setLocation(String address) {
+    public void setLocation(String location) {
         this.location = location;
     }
-    //--Methods--
-    public void printInfo() {
-        System.out.println("Gallery's name: " + name);
-        System.out.println("Gallery's location: " + location);
+    //--Polymorphism and Abstraction--
+    public String toString() {
+        return "Gallery's name: " + name + "\nGallery's location: " + location;
     }
+    public void printInfo() {
+        System.out.println("Gallery's name: " + name + "\nGallery's location: " + location);
+    }
+    //--Polymorphism and Abstraction
+    public abstract void showCategories();
 }

@@ -2,12 +2,22 @@ public class Main {
     public static void main(String[] args) {
     //--Create objects (instances of classes)--
         System.out.println("\n===ART EXHIBITION===");
-        Artwork artwork1 = new Artwork ("Mona Lisa", "Leonardo Da Vinci", 1980,false, 800000000) ;
+        Artwork artwork1 = new Artwork ("Mona Lisa", "Leonardo Da Vinci", 1979,false, 800000000) ;
         Artwork artwork2 = new Artwork ("Starry Night", "Vincent Van Gogh", 1889, false, 1000000000);
         Artist artist1 = new Artist ("Leonardo Da Vinci", 67);
         Artist artist2 = new Artist ("Vincent Van Gogh", 37);
-        Gallery gallery1 = new Gallery("Louvre museum", "Paris, France");
-        Gallery gallery2 = new Gallery("Museum of Modern Art", "New York City, USA");
+        Gallery gallery1 = new Gallery("Louvre museum", "Paris, France") {
+            @Override
+            public void showCategories() {
+                System.out.println("paintings, sculptures and artifacts");
+            }
+        };
+        Gallery gallery2 = new Gallery("Museum of Modern Art", "New York City, USA") {
+            @Override
+            public void showCategories() {
+                System.out.println("painting, sculpture, photography, design, film");
+            }
+        };
         //--OUTPUT 1: Print all--
         artwork1.printInfo();
         artwork2.printInfo();
@@ -49,5 +59,11 @@ public class Main {
             }
         }
         System.out.println("Most expensive artwork price: " + maxprice + "$");
+        //--OUTPUT 5: Equals and hashcode method
+        System.out.println(artist1.equals(artwork1));
+        System.out.println(artist2.equals(artwork2));
+        System.out.println(artist1.equals(artist2));
+        System.out.println(artist1.hashCode());
+        System.out.println(artist2.hashCode());
     }
 }

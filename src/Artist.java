@@ -1,3 +1,4 @@
+import java.util.Objects;
 public class Artist {
     //--Attributes--
     private String name;
@@ -26,5 +27,26 @@ public class Artist {
     public void printInfo() {
         System.out.println("Artist's name: " + name);
         System.out.println("Artist's age: " + age);
+    }
+    //--Equals (will divide by two comparisons)
+    //1)Checking if artist in artwork class has the same address in the name in artist class(it must output true)
+    //2)Checking if artists in two different artworks are same(dependent which artwork you're inputting)
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null) {
+            return false;
+        }
+        if(obj instanceof Artist anotherArtist) {
+            return this.name.equals(anotherArtist.name);
+        }
+        if(obj instanceof Artwork artwork) {
+            return this.name.equals(artwork.getArtist());
+        }
+        return false;
+    }
+    //--Hashcode(small code that is returning only artist's name address)
+    @Override
+    public int hashCode() {
+        return this.name.hashCode();
     }
 }
