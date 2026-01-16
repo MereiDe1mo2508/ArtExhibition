@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Application {
     private artworkController controller;
     private Scanner scanner;
-    public Application(artworkController controller, Scanner scanner) {
+    public Application(artworkController controller) {
         this.controller = controller;
         scanner = new Scanner(System.in);
     }
@@ -38,26 +38,26 @@ public class Application {
         }
         System.out.println("Goodbye!");
     }
-}
-public void getAllArtworksMenu() {
-    String response = controller.getAllArtworks();
-    System.out.println(response);
-}
-public void getArtworkByIdMenu() {
-    System.out.println("Get artwork by id:");
-    int id = scanner.nextInt();
-    String response = controller.getArtwork(id);
-}
-public void createArtworkMenu() {
-    System.out.println("Input title:");
-    String title = scanner.next();
-    System.out.println("Input artist:");
-    String artist = scanner.next();
-    System.out.println("Input date:");
-    int date_of_creating = scanner.next();
-    System.out.println("Is copyrighed?:");
-    Boolean copyrighted = scanner.next();
-    String response = controller.createArtwork(title, artist, date_of_creating, copyrighted);
-    System.out.println(response);
+    public void getAllArtworksMenu() {
+        String response = controller.getAllArtworks();
+        System.out.println(response);
+    }
+    public void getArtworkByIdMenu() {
+        System.out.println("Get artwork by id:");
+        int id = scanner.nextInt();
+        String response = controller.getArtwork(id);
+    }
+    public void createArtworkMenu() {
+        System.out.println("Input title:");
+        String title = scanner.next();
+        System.out.println("Input artist:");
+        String artist = scanner.next();
+        System.out.println("Input date:");
+        int date_of_creating = Integer.parseInt(scanner.next());
+        System.out.println("Is copyrighed?:");
+        Boolean copyrighted = Boolean.valueOf(scanner.next());
+        String response = controller.createArtwork(title, artist, date_of_creating, String.valueOf(copyrighted));
+        System.out.println(response);
+    }
 }
 //--I feel like i can't do these whole DBMS stuff, even easiest one

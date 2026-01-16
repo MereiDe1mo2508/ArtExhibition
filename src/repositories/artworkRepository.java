@@ -2,16 +2,20 @@ package repositories;
 
 import data.interfaces.IDB;
 import entities.artwork;
+import repositories.interfaces.IartworkRepository;
+
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
-public class artworkRepository {
+public class artworkRepository implements IartworkRepository {
     private final IDB db;
     public artworkRepository(IDB db) throws SQLException, ClassNotFoundException {
         this.db = db;
     }
+
+    @Override
     public boolean createArtwork(artwork artwork) {
         Connection con = null;
         try {
@@ -37,6 +41,13 @@ public class artworkRepository {
         }
         return false;
     }
+
+    @Override
+    public boolean CreatedArtwork(artwork artwork) {
+        return false;
+    }
+
+    @Override
     public artwork getArtwork(int id) {
         Connection con = null;
         try {
@@ -64,6 +75,12 @@ public class artworkRepository {
         }
         return null;
     }
+
+    @Override
+    public List<artwork> getAllArtworks() {
+        return List.of();
+    }
+
     public List<artwork> getAllArtwork() {
         Connection con = null;
         try {

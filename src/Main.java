@@ -82,7 +82,7 @@ public class Main {
         System.out.println(artist1.hashCode());
         System.out.println(artist2.hashCode());
         //--OUTPUT 6: Creating database and connect SQL with JDBC (easy)
-        String connectionURL = "jdbc:mysql://localhost:5432/simpledb";
+        String connectionURL = "jdbc:postgresql://localhost:5432/simpledb";
         Connection conn = null;
         ResultSet rs = null;
         Statement stmt = null;
@@ -90,7 +90,7 @@ public class Main {
             Class.forName("org.postgresql.Driver");
             conn = DriverManager.getConnection(connectionURL, "postgres", "y1pp33");
             stmt = conn.createStatement();
-            rs = stmt.executeQuery("select * from artwork");
+            rs = stmt.executeQuery("select * from artwork;");
             while (rs.next())
                 System.out.println(rs.getInt("id") + " " + rs.getString("title") + " " + rs.getString("artist") + " " + rs.getInt("date_of_creating") + " " + rs.getBoolean("copyrighted"));
         }
@@ -111,5 +111,4 @@ public class Main {
     IartworkRepository repository = new artworkRepository(db);
     artworkController controller = new artworkController(repository);
     Application app = new Application(controller);
-    app.start();
 }
