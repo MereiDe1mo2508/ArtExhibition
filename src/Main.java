@@ -1,8 +1,24 @@
+import controllers.artworkController;
+import data.PostgresDB;
+import data.interfaces.IDB;
+import repositories.artworkRepository;
+import repositories.interfaces.IartworkRepository;
+
+import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Objects;
+
 public class Main {
+    public Main() throws SQLException, ClassNotFoundException {
+    }
+
     public static void main(String[] args) {
     //--Create objects (instances of classes)--
         System.out.println("\n===ART EXHIBITION===");
-        Artwork artwork1 = new Artwork ("Mona Lisa", "Leonardo Da Vinci", 1979,false, 800000000) ;
+        Artwork artwork1 = new Artwork ("Mona Lisa", "Leonardo Da Vinci", 1517,false, 800000000) ;
         Artwork artwork2 = new Artwork ("Starry Night", "Vincent Van Gogh", 1889, false, 1000000000);
         Artist artist1 = new Artist ("Leonardo Da Vinci", 67);
         Artist artist2 = new Artist ("Vincent Van Gogh", 37);
@@ -65,5 +81,35 @@ public class Main {
         System.out.println(artist1.equals(artist2));
         System.out.println(artist1.hashCode());
         System.out.println(artist2.hashCode());
+        //--OUTPUT 6: Creating database and connect SQL with JDBC (easy)
+        String connectionURL = "jdbc:mysql://localhost:5432/simpledb";
+        Connection conn = null;
+        ResultSet rs = null;
+        Statement stmt = null;
+        try {
+            Class.forName("org.postgresql.Driver");
+            conn = DriverManager.getConnection(connectionURL, "postgres", "y1pp33");
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("select * from artwork");
+            while (rs.next())
+                System.out.println(rs.getInt("id") + " " + rs.getString("title") + " " + rs.getString("artist") + " " + rs.getInt("date_of_creating") + " " + rs.getBoolean("copyrighted"));
+        }
+        catch (Exception e) {
+            System.out.println("Exception occurred!");
+        } finally {
+            try {
+                conn.close();
+            } catch (Exception e) {
+                System.out.println("Exception occurred!");
+            }
+        }
+        System.out.println("Finished!");
+        //For some reason the output doesn't show result, even thought I putted the JDBC
     }
+    //--OUTPUT 7: Creating database and connect SQL with JDBC (advanced)
+    IDB db = new PostgresDB();
+    IartworkRepository repository = new artworkRepository(db);
+    artworkController controller = new artworkController(repository);
+    Application app = new Application(controller);
+    app.start();
 }
