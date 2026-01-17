@@ -9,12 +9,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.InputMismatchException;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class Main {
-
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
     //--Create objects (instances of classes)--
         System.out.println("\n===ART EXHIBITION===");
         Artwork artwork1 = new Artwork ("Mona Lisa", "Leonardo Da Vinci", 1517,false, 800000000) ;
@@ -104,18 +104,4 @@ public class Main {
         }
         System.out.println("Finished!");
     }
-    //--OUTPUT 7: Creating database and connect SQL with JDBC (advanced)
-    IDB db = new PostgresDB();
-    IartworkRepository repository;
-    {
-        try {
-            repository = new artworkRepository(db);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    artworkController controller = new artworkController(repository);
-    Application app = new Application(controller);
 }
