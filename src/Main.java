@@ -12,8 +12,7 @@ import java.sql.Statement;
 import java.util.Objects;
 
 public class Main {
-    public Main() throws SQLException, ClassNotFoundException {
-    }
+
 
     public static void main(String[] args) {
     //--Create objects (instances of classes)--
@@ -90,9 +89,9 @@ public class Main {
             Class.forName("org.postgresql.Driver");
             conn = DriverManager.getConnection(connectionURL, "postgres", "y1pp33");
             stmt = conn.createStatement();
-            rs = stmt.executeQuery("select * from artwork;");
+            rs = stmt.executeQuery("select * from artist;");
             while (rs.next())
-                System.out.println(rs.getInt("id") + " " + rs.getString("title") + " " + rs.getString("artist") + " " + rs.getInt("date_of_creating") + " " + rs.getBoolean("copyrighted"));
+                System.out.println(rs.getInt("artist_id") + " " + rs.getString("artist_name") + " " + rs.getString("artist_age") + " " + rs.getInt("artwork_id"));
         }
         catch (Exception e) {
             System.out.println("Exception occurred!");
@@ -104,11 +103,19 @@ public class Main {
             }
         }
         System.out.println("Finished!");
-        //For some reason the output doesn't show result, even thought I putted the JDBC
     }
     //--OUTPUT 7: Creating database and connect SQL with JDBC (advanced)
     IDB db = new PostgresDB();
-    IartworkRepository repository = new artworkRepository(db);
+    IartworkRepository repository;
+    {
+        try {
+            repository = new artworkRepository(db);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
     artworkController controller = new artworkController(repository);
     Application app = new Application(controller);
 }
