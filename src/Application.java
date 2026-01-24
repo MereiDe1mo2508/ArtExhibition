@@ -11,7 +11,7 @@ void main() throws Exception {
         IO.println("4. Delete artwork: ");
         IO.println("0. Exit");
         try {
-            IO.print("Enter your choice (1-3): ");
+            IO.print("Enter your choice (1-4): ");
             int choice = scanner.nextInt();
             if (choice == 1) {
                 Statement statement = connection.createStatement();
