@@ -8,10 +8,10 @@ public class Main {
     public static void main(String[] args) throws Exception{
     //--Create objects (instances of classes)--
         System.out.println("\n===ART EXHIBITION===");
-        Artwork artwork1 = new Artwork ("Mona Lisa", "Leonardo Da Vinci", 1517,false, 800000000) ;
-        Artwork artwork2 = new Artwork ("Starry Night", "Vincent Van Gogh", 1889, false, 1000000000);
-        Artist artist1 = new Artist ("Leonardo Da Vinci", 67);
-        Artist artist2 = new Artist ("Vincent Van Gogh", 37);
+        Artwork artwork1 = new Artwork("Mona Lisa", "Leonardo Da Vinci", 1517, false, 800000000);
+        Artwork artwork2 = new Artwork("Starry Night", "Vincent Van Gogh", 1889, false, 1000000000);
+        Artist artist1 = new Artist.ArtistBuilder ("Leonardo Da Vinci", 67).wantStatus(false).build();
+        Artist artist2 = new Artist.ArtistBuilder ("Vincent Van Gogh", 37).wantStatus(false).build();
         Gallery gallery1 = new Gallery("Louvre museum", "Paris, France") {
             @Override
             public void showCategories() {
@@ -53,18 +53,7 @@ public class Main {
         System.out.println("Numbers of copyrighted artworks: " + copyrights);
         //--OUTPUT 4: Java Basics - array + for loop--
         System.out.println("\n===LOOP THROUGH ARTWORK PRICES===");
-        Artwork[] artworks = {artwork1, artwork2};
-
-        int maxprice = 0;
-        for(int i = 0; i < artworks.length; i++) {
-            int currentprice = artworks[i].getPrice();
-            System.out.println("Artwork " + (i + 1) + " price: " + currentprice + "$");
-
-            if(currentprice > maxprice) {
-                maxprice = currentprice;
-            }
-        }
-        System.out.println("Most expensive artwork price: " + maxprice + "$");
+        artworkprice.compare(artwork1, artwork2);
         //--OUTPUT 5: Equals and hashcode method
         System.out.println(artist1.equals(artwork1));
         System.out.println(artist2.equals(artwork2));

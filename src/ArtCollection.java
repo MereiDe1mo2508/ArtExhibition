@@ -1,6 +1,6 @@
 import java.lang.Override;
 //--Inheritance of the gallery--
-class ArtCollection extends Gallery {
+public class ArtCollection extends Gallery {
     //--Attributes--
     private String category;
     //--Constructors--
@@ -23,4 +23,5 @@ class ArtCollection extends Gallery {
     public void showCategories() {
         System.out.println("Types of arts in gallery: " + getCategory());
     }
+
 }
