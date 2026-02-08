@@ -43,14 +43,7 @@ public class Main {
         }
         //--OUTPUT 3: Java Basics - Counting copyrights--
         System.out.println("\n===COUNT ON COPYRIGHTS===");
-        int copyrights = 0;
-        if(artwork1.getCopyrighted()) {
-            copyrights++;
-        }
-        if(artwork2.getCopyrighted()) {
-            copyrights++;
-        }
-        System.out.println("Numbers of copyrighted artworks: " + copyrights);
+        CountCopyrights.find(artwork1, artwork2);
         //--OUTPUT 4: Java Basics - array + for loop--
         System.out.println("\n===LOOP THROUGH ARTWORK PRICES===");
         artworkprice.compare(artwork1, artwork2);
@@ -83,5 +76,15 @@ public class Main {
             }
         }
         System.out.println("Finished!");
+        InterfaceTest testing = () -> System.out.println("This is how lambda expression works");
+        testing.message();
+        Generictest<Integer> integerGenerictest = new Generictest<>(20);
+        integerGenerictest.print();
+        Generictest<String> stringGenerictest = new Generictest<>("Haiiii :3");
+        stringGenerictest.print();
+        ArtFactory testfactory = new ArtFactory();
+        testfactory.create("OILART").getArtType();
+        testfactory.create("PORTRAIT").getArtType();
+        testfactory.create("DIGITALART").getArtType();
     }
 }

@@ -1,5 +1,5 @@
 //--Making a class abstract to use polymorphism in inhered class
-abstract class Gallery {
+abstract class Gallery{
     //--Attributes
     private String name;
     private String location;
@@ -32,4 +32,5 @@ abstract class Gallery {
     }
     //--Polymorphism and Abstraction
     public abstract void showCategories();
+    //Lambda expression Printable thing
 }

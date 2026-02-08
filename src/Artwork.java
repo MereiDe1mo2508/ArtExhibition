@@ -13,6 +13,10 @@ public class Artwork {
         this.copyrighted = copyrighted;
         this.price = price;
     }
+
+    public Artwork() {
+    }
+
     //--Getters and Setters
     public String getTitle() {
         return title;

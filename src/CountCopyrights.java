@@ -11,5 +11,6 @@ public class CountCopyrights extends Artwork{
         if(artwork2.getCopyrighted()) {
             copyrights++;
         }
+        System.out.println("Number of copyrights: " + copyrights);
     }
 }

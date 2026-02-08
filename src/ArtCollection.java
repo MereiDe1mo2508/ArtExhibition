@@ -23,5 +23,4 @@ public class ArtCollection extends Gallery {
     public void showCategories() {
         System.out.println("Types of arts in gallery: " + getCategory());
     }
-
 }
